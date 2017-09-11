@@ -22,6 +22,7 @@ Use the MailGun API to access the product's features, such as sending E-Mails, w
  |List|Simple array|```["123", "sample"]``` 
  |Select|String with predefined values|```sample```
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+ 
 | Field              | Type       | Description
 |--------------------|------------|----------
 | apiKey             | Credentials| The api key obtained from MailGun.
