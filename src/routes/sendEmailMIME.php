@@ -4,7 +4,7 @@ $app->post('/api/MailGun/sendEmailMIME', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','domain','from','to']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','domain','mFrom','mTo']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,20 +12,20 @@ $app->post('/api/MailGun/sendEmailMIME', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'apiKey','domain'=>'domain','from'=>'from','to'=>'to'];
+    $requiredParams = ['apiKey'=>'apiKey','domain'=>'domain','mFrom'=>'from','mTo'=>'to'];
     $optionalParams = ['cc'=>'cc','bcc'=>'bcc','subject'=>'subject','text'=>'text','html'=>'html','inline'=>'inline','o:tag'=>'o:tag','o:campaign'=>'o:campaign','o:dkim'=>'o:dkim','o:deliverytime'=>'o:deliverytime','o:testmode'=>'o:testmode','o:tracking'=>'o:tracking','o:tracking-clicks'=>'o:tracking-clicks','o:tracking-opens'=>'o:tracking-opens','o:require-tls'=>'o:require-tls','o:skip-verification'=>'o:skip-verification','h:X-My-Header'=>'h:X-My-Header','v:my-var'=>'v:my-var'];
     $bodyParams = [
-       'form_params' => ['from','to','bcc','subject','text','html','inline','o:tag','o:campaign','o:dkim','o:deliverytime','o:testmode','o:tracking','o:tracking-clicks','o:tracking-opens','o:require-tls','o:skip-verification','h:X-My-Header','v:my-var']
+        'form_params' => ['from','to','bcc','subject','text','html','inline','o:tag','o:campaign','o:dkim','o:deliverytime','o:testmode','o:tracking','o:tracking-clicks','o:tracking-opens','o:require-tls','o:skip-verification','h:X-My-Header','v:my-var']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['to'] = \Models\Params::toString($data['to']);
 
-    
 
     $client = $this->httpClient;
-    $query_str = "https://api.mailgun.net/v3/{$data['domain']}/messages.mime";
+    $query_str = "https://api.mailgun.net/v3/{$data['domain']}/messages";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];

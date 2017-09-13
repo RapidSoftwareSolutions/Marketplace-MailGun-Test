@@ -72,7 +72,7 @@ class Params
         }
 
 
-        if($format == 'unixTime')
+        if($format == 'unixtime')
         {
             return $time;
         }

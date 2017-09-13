@@ -64,13 +64,13 @@
                     "required": true
                 },
                 {
-                    "name": "from",
+                    "name": "mFrom",
                     "type": "String",
                     "info": "Email address for From header.",
                     "required": true
                 },
                 {
-                    "name": "to",
+                    "name": "mTo",
                     "type": "List",
                     "info": "Email address of the recipient(s). ('Bob bob@host.com'). You can use commas to separate multiple recipients.",
                     "required": true,
@@ -292,13 +292,13 @@
                     "required": true
                 },
                 {
-                    "name": "from",
+                    "name": "mFrom",
                     "type": "String",
                     "info": "Email address for From header.",
                     "required": true
                 },
                 {
-                    "name": "to",
+                    "name": "mTo",
                     "type": "List",
                     "info": "Email address of the recipient(s). ('Bob bob@host.com'). You can use commas to separate multiple recipients.",
                     "required": true,
